@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SahakarMitra - AI Assistant for Cooperative Societies</title>
+  <meta name="description" content="SahakarMitra - Legal and regulatory AI assistant for cooperative societies." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-container">
+        <div class="brand-group">
+          <div class="brand-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-title">SahakarMitra</h1>
+            <p class="brand-subtitle">AI Regulatory & Legal Assistant</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="status-badge" id="api-status-badge" title="Backend API Target: http://localhost:8000/ask">
+            <span class="status-dot"></span>
+            <span class="status-text">Backend Ready</span>
+          </div>
+          <button id="clear-chat-btn" class="header-btn" title="Clear conversation" aria-label="Clear chat">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Chat Window Container -->
+    <main class="chat-main">
+      <div class="chat-container" id="chat-container">
+        <!-- Welcome Screen State -->
+        <div class="welcome-screen" id="welcome-screen">
+          <div class="welcome-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h2 class="welcome-title">Welcome to SahakarMitra</h2>
+          <p class="welcome-desc">
+            Ask any question regarding cooperative society bye-laws, compliance, registration, audit regulations, or legal dispute procedures.
+          </p>
+
+          <div class="suggestion-section">
+            <p class="suggestion-label">Suggested Questions:</p>
+            <div class="suggestion-grid">
+              <button type="button" class="suggestion-chip" data-query="What are the mandatory requirements for conducting an Annual General Meeting (AGM)?">
+                <span class="chip-icon">📋</span>
+                <span>Requirements for conducting an AGM</span>
+              </button>
+              <button type="button" class="suggestion-chip" data-query="What is the procedure for expulsion of a member from a cooperative society?">
+                <span class="chip-icon">⚖️</span>
+                <span>Procedure for expulsion of a member</span>
+              </button>
+              <button type="button" class="suggestion-chip" data-query="How are audit and inspection reports submitted to the Registrar?">
+                <span class="chip-icon">📑</span>
+                <span>Audit & inspection reporting guidelines</span>
+              </button>
+              <button type="button" class="suggestion-chip" data-query="What is the minimum share capital required to register a society?">
+                <span class="chip-icon">🏛️</span>
+                <span>Minimum registration share capital</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Message List -->
+        <div class="messages-list" id="messages-list" role="log" aria-live="polite"></div>
+      </div>
+
+      <!-- Input Area -->
+      <footer class="chat-input-wrapper">
+        <div class="input-container">
+          <form id="chat-form" class="chat-form" autocomplete="off">
+            <textarea
+              id="user-input"
+              class="user-input"
+              placeholder="Ask a question about cooperative society regulations..."
+              rows="1"
+              maxlength="2000"
+              aria-label="Your question"
+              required
+            ></textarea>
+            <button type="submit" id="send-btn" class="send-btn" aria-label="Send question" title="Send (Enter)">
+              <span class="btn-text">Send</span>
+              <svg class="send-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+          <div class="input-footer-info">
+            <span>Press <strong>Enter</strong> to send, <strong>Shift + Enter</strong> for a new line</span>
+            <span id="char-counter" class="char-counter">0/2000</span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
